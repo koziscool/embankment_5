@@ -106,7 +106,6 @@ def e13():
     """
     
     num_array = map( lambda s: int(s) ,(raw_num_string.strip().split("\n")))
-    # print num_array
     return int(str(sum( num_array ))[:10]) 
 
 if __name__ == '__main__':
