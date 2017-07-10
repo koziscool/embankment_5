@@ -3,22 +3,14 @@
 import time
 
 def e15():
-    end_range = 100
-    collatz_len = { 1:1, 2:2, 4:3 }
+    factorial  = lambda n:  reduce(lambda x,y:x*y, [1]+range(1,n+1))
+    combinations = lambda n, r: factorial(n) // factorial(r) // factorial(n - r)
+    pascals_row = lambda n: map( lambda i: combinations(n, i), range(n+1) )
 
-    def collatz_length( n ):
-        if n in collatz_len:
-            return collatz_len[n]
-        else:
-            answer = collatz_length( n//2 ) + 1 if n%2 == 0 else collatz_length( 3*n + 1 ) + 1
-            collatz_len[n] = answer
-            return answer
+    end_range = 20
+    end_row = pascals_row( end_range )
 
-    for i in xrange(1, 10 ** 6):
-        collatz_length(i)
-
-    return  max(collatz_len, key=collatz_len.get)
-
+    return sum( i*i for i in end_row )
 
 if __name__ == '__main__':
     start = time.time()

@@ -1,15 +1,18 @@
-
-
         
 import time
-import math
 
 def e9():
-    
-    a, b, = 1, 1
+    for c in xrange(5, 1000):
+        a, b, = 1, 1
+        while b < c:
+            if a*a + b*b == c*c and a+b+c == 1000:
+                return a*b*c
 
+            if a<b:
+                a += 1
+            else:
+                a, b = 1, b+1
 
-    return 'not ready'
 
 if __name__ == '__main__':
     start = time.time()

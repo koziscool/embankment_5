@@ -36,11 +36,24 @@ def e11():
         num_line_array = map( lambda s: int(s), l.strip().split() )
         num_array.append( num_line_array )
 
-    array_square_length, adjacency_length = 20, 4
+    array_square_length, adjacency_length, max_prod = 20, 4, 0
 
+    for i in xrange(array_square_length):
+        for j in xrange(array_square_length):
+            downProduct, rightProduct, rDiagProduct, lDiagProduct = 1, 1, 1, 1
+            for k in xrange( adjacency_length ):
+                if j + k < array_square_length:
+                    rightProduct *= num_array[i][j+k]
+                if i + k < array_square_length:
+                    downProduct *= num_array[i+k][j]
+                if i + k < array_square_length and j + k < array_square_length:
+                    rDiagProduct *= num_array[i+k][j+k]
+                if i + k < array_square_length and j - k >= 0:
+                    lDiagProduct *= num_array[i+k][j-k]
 
+            max_prod = max( max_prod, rightProduct, downProduct, rDiagProduct, lDiagProduct)
 
-
+    return max_prod
 
 
 
